@@ -13,8 +13,8 @@ from rest_framework_extensions.key_constructor.bits import (
     RetrieveSqlQueryKeyBit,
     ListSqlQueryKeyBit,
     PaginationKeyBit,
-    KwargsKeyBit
-)
+    KwargsKeyBit,
+    ArgsKeyBit)
 
 class UpdatedAtKeyBit(KeyBitBase):
     def get_data(self, **kwargs):
@@ -32,9 +32,9 @@ class CustomObjectKeyConstructor(DefaultKeyConstructor):
 
 
 class CustomListKeyConstructor(DefaultKeyConstructor):
-    ip_address_and_user_agent = KwargsKeyBit(
-        ['territory']
-    )
+    args = ArgsKeyBit()
+    kwargs = KwargsKeyBit(['territory'])
+    all_kwargs = KwargsKeyBit()
     list_sql = ListSqlQueryKeyBit()
     pagination = PaginationKeyBit()
     updated_at = UpdatedAtKeyBit()
